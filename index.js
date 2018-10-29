@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 const mariadb = require('mariadb');
 const pool = mariadb.createPool({host: '140.118.110.32', user:'ws_user', password:'ws_fall108', database:'ilibrary_test', port:'53306'});
 
+app.use(express.static(__dirname + "/public"));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -16,16 +17,10 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(express.static(__dirname + "/public"));
-
 app.use(bodyParser.json());
 
-app.get('/',function(req, res, next){
-
-});
-
 //Start Server
-app.listen(8080, function(err) {
+app.listen(8081, function(err) {
     if (err)
         console.log(err.message);
     else

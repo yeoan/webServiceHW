@@ -1,7 +1,7 @@
 $(document).ready(function() {
   $("#btnGetBook").click(function(event) {
     $.ajax({
-      url: "http://127.0.0.1:8080/api/books/",
+      url: "http://127.0.0.1:8081/api/books/",
       method: "GET",
       contentType: "application/x-www-form-urlencoded",
       data: {
@@ -19,7 +19,7 @@ $(document).ready(function() {
 
   $("#btnGetBooks").click(function(event) {
     $.ajax({
-      url: "http://127.0.0.1:8080/api/books/",
+      url: "http://127.0.0.1:8081/api/books/",
       method: "GET",
       contentType: "application/x-www-form-urlencoded",
       data: {},
