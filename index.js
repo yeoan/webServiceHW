@@ -20,7 +20,7 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json());
 
 //Start Server
-app.listen(8081, function(err) {
+app.listen(3000, function(err) {
     if (err)
         console.log(err.message);
     else
@@ -36,7 +36,7 @@ app.get("/api/books/", function(req, resp, next) {
     "message":""
   };
   console.log(req.query.bid);
-  if(req.query.length==0){
+  if(req.query.bid===undefined){
     pool.getConnection()
       .then(conn => {
         conn.query("SELECT * From book")
