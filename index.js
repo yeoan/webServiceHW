@@ -85,6 +85,39 @@ app.get("/api/books/", function(req, resp, next) {
   }
 });
 
+// home page
+app.get("/api/books/:bid", function(req, resp, next) {
+  let myObj = {
+    "books":[],
+    "error":false,
+    "message":""
+  };
+
+    pool.getConnection()
+      .then(conn => {
+        conn.query("SELECT * From book WHERE id ="+req.params.bid)
+          .then((res) => {
+            console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 }
+            myObj.books = res;
+            resp.json(myObj);
+            conn.end();
+          })
+          .catch(err => {
+            //handle error
+            myObj.error = true;
+            console.log(err);
+            resp.json(myObj);
+            conn.end();
+          })
+      }).catch(err => {
+        //not connected
+        myObj.error = true;
+        resp.json(myObj);
+        console.log(err)
+      });
+
+});
+
 // Not found page
 app.get("*", function(req, resp, next) {
     resp.end("Not found page");
